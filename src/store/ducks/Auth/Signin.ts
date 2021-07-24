@@ -32,7 +32,7 @@ interface actionProps {
 }
 
 const initialState: InitialSigninStateProps = {
-    data: undefined,
+    user: undefined,
     loading: false,
     error: undefined,
 };
@@ -42,12 +42,12 @@ export const signinReducer = (state = initialState, action: actionProps) => {
         case signinTypes.SIGNIN_REQUEST:
             return {...state, loading: true};
         case signinTypes.SIGNIN_SUCCESS:
-            return {...state, loading: false, data: action.payload};
+            return {...state, loading: false, user: action.payload};
         case signinTypes.SIGNIN_ERROR:
             return {
                 ...state,
                 loading: false,
-                data: undefined,
+                user: undefined,
                 error: action.payload,
             };
         default:

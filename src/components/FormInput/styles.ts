@@ -11,7 +11,7 @@ export const TextInput = styled(Field)`
     margin: 20px 0px 20px 0px;
     padding: 16px;
     &:focus {
-        border: 2px solid ${colors.red};
+        border: 2px solid ${colors.primary};
         outline: none;
     }
 `;

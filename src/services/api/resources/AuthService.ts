@@ -3,9 +3,12 @@ import {SigninDto} from '~/shared/dto/Auth/signin.dto';
 
 const sigIn = (data: SigninDto) => {
     return client({
-        url: 'signin',
-        method: 'GET',
-        data,
+        url: '/auth/signin',
+        method: 'POST',
+        data: {
+            email: data.email,
+            password: data.password,
+        },
     });
 }
 

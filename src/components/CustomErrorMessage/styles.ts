@@ -2,6 +2,6 @@ import styled from 'styled-components';
 import {colors} from '~/theme';
 
 export const Message = styled.label`
-    color: ${colors.red};
+    color: ${colors.errorColorMessage};
     font-size: 14px;
 `;

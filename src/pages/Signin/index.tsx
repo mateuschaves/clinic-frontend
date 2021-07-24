@@ -12,6 +12,8 @@ import {InitialSigninStateProps, RootState} from '~/shared/store/app.state';
 import {useDispatch, useSelector} from 'react-redux';
 import {signinActions} from '~/store/ducks/Auth/Signin';
 
+import {useToast} from '@chakra-ui/react';
+
 import {Container, FormContainer, FormTitle, Footer} from './styles';
 
 interface FormValues {
@@ -29,12 +31,36 @@ export default function Signin() {
     const signin = useSelector<RootState, InitialSigninStateProps>(state => state.signin);
 
     const dispatch = useDispatch();
+    const toast = useToast();
+
+
+    function successCallback() {
+        toast({
+            title: "Login feito com sucesso.",
+            description: "Seja bem vindo.",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+        })
+    }
+
+    function errorCallback() {
+        toast({
+            title: 'Erro ao realizar login.',
+            description: 'Verifique sua senha e tente novamente.',
+            status: 'error',
+            duration: 9000,
+            isClosable: true,
+        })
+    }
 
     function handleSignin(values: FormValues) {
         const {email, password} = values;
         dispatch(signinActions.signin({
             email,
             password,
+            successCallback,
+            errorCallback,
         }));
     }
 
@@ -47,7 +73,7 @@ export default function Signin() {
                 validateOnChange={false}
             >
                 <FormContainer>
-                    <FormTitle>React Auth Boilerplate</FormTitle>
+                    <FormTitle>Entrar</FormTitle>
 
                     <FormInput 
                         type="email"

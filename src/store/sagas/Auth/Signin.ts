@@ -18,24 +18,17 @@ interface signinSagaProps extends AnyAction {
 }
 
 export function* signinSaga({payload}: signinSagaProps) {
-    try {
-        // const response: AxiosResponse<User> = yield call(AuthService.sigIn, payload);
-        const {email} = payload;
-        const response: AxiosResponse<User> = {
-            data: {
-                email,
-                name: '',
-                token: '',
-            },
-            config: {},
-            headers: {},
-            status: 200,
-            statusText: 'ok',
-        };
+    const {successCallback, errorCallback} = payload;
 
-        yield delay(3000);
+    try {
+        const response: AxiosResponse<User> = yield call(AuthService.sigIn, payload);
+
+        if (successCallback)
+            successCallback();
         yield put(signinActions.signinSuccess(response));
     } catch (error) {
+        if (errorCallback)
+            errorCallback();
         yield put(signinActions.signinError(error));
     }
 }

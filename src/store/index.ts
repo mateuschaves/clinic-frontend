@@ -10,7 +10,7 @@ import rootSaga from './sagas';
 const persistConfig: any = {
     key: 'root',
     storage,
-    whitelist: [],
+    whitelist: ['signin'],
 };
 
 const middlewares = [];

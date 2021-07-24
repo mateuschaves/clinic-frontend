@@ -2,7 +2,7 @@ import {AxiosError, AxiosResponse} from 'axios';
 import {User} from '~/shared/types/entity';
 
 export interface InitialSigninStateProps {
-    data: AxiosResponse<User> | undefined,
+    user: AxiosResponse<User> | undefined,
     loading: boolean,
     error: AxiosError | undefined,
 }
