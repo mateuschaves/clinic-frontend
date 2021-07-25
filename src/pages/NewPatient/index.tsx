@@ -24,21 +24,21 @@ import { RootState, InitialNewPatientStateProps } from '../../shared/store/app.s
 interface ValuesProps {
     name: string;
     gender: string;
-    birthdate: Date;
+    birthdate?: Date;
     medication: string;
     drug: string;
-    weight: number;
-    height: number;
+    weight?: number;
+    height?: number;
 }
 
 const initialValues: ValuesProps = {
     name: '',
     gender: '',
-    birthdate: new Date(),
+    birthdate: undefined,
     medication: '',
     drug: '',
-    weight: 0,
-    height: 0,
+    weight: undefined,
+    height: undefined,
 }
 
 export default function NewPatient() {
@@ -55,7 +55,7 @@ export default function NewPatient() {
                         {({ field, form }: any) => (
                         <FormControl isInvalid={form.errors.drug}>
                             <FormLabel htmlFor="drug">Remédio</FormLabel>
-                            <Input {...field} id="drug" placeholder="Paracetamol" size="lg"/>
+                            <Input {...field} id="drug" placeholder="Paracetamol" size="md"/>
                             <FormErrorMessage>{form.errors.drug}</FormErrorMessage>
                         </FormControl>
                         )}
@@ -99,7 +99,8 @@ export default function NewPatient() {
                     }))
                 }}
                 validationSchema={validationSchema}
-                >
+                validateOnBlur={false}
+            >
                 {(props: FormikProps<ValuesProps>) => (
                     <Form>
                         <VStack spacing={8} align="stretch">
@@ -108,7 +109,7 @@ export default function NewPatient() {
                                     {({ field, form }: any) => (
                                     <FormControl isInvalid={form.errors.name}>
                                         <FormLabel htmlFor="name">Nome</FormLabel>
-                                        <Input {...field} id="name" placeholder="Ex. João" size="lg"/>
+                                        <Input {...field} id="name" placeholder="Ex. João" size="md"/>
                                         <FormErrorMessage>{form.errors.name}</FormErrorMessage>
                                     </FormControl>
                                     )}
@@ -118,7 +119,7 @@ export default function NewPatient() {
                                     {({ field, form }: any) => (
                                     <FormControl isInvalid={form.errors.gender}>
                                         <FormLabel htmlFor="gender">Sexo</FormLabel>
-                                        <Select {...field} placeholder="Selecione uma opção" id="gender" size="lg">
+                                        <Select {...field} placeholder="Selecione uma opção" id="gender" size="md">
                                             <option value="male">Masculino</option>
                                             <option value="female">Feminino</option>
                                         </Select>
@@ -132,7 +133,7 @@ export default function NewPatient() {
                                     {({ field, form }: any) => (
                                     <FormControl isInvalid={form.errors.birthdate}>
                                         <FormLabel htmlFor="birthdate">Data de nascimento</FormLabel>
-                                        <Input {...field} id="birthdate" placeholder="21/10/1998" type="date" size="lg"/>
+                                        <Input {...field} id="birthdate" placeholder="21/10/1998" type="date" size="md"/>
                                         <FormErrorMessage>{form.errors.birthdate}</FormErrorMessage>
                                     </FormControl>
                                     )}
@@ -142,7 +143,7 @@ export default function NewPatient() {
                                     {({ field, form }: any) => (
                                     <FormControl isInvalid={form.errors.medication}>
                                         <FormLabel htmlFor="medication">Medicações</FormLabel>
-                                        <Select {...field} placeholder="Selecione uma opção" id="medication" size="lg">
+                                        <Select {...field} placeholder="Selecione uma opção" id="medication" size="md">
                                             <option value="none">Nenhuma</option>
                                             <option value="in_use">Em uso</option>
                                             <option value="suspend">Suspendeu</option>
@@ -155,12 +156,12 @@ export default function NewPatient() {
                             {
                                 renderDrugInput(props)
                             }
-                            <HStack spacing="100px"> 
+                            <HStack spacing="80px"> 
                                 <Field name="weight">
                                     {({ field, form }: any) => (
                                     <FormControl isInvalid={form.errors.weight}>
                                         <FormLabel htmlFor="weight">Peso</FormLabel>
-                                        <Input {...field} id="weight" placeholder="53.3" size="lg"/>
+                                        <Input {...field} id="weight" placeholder="53.3" size="md"/>
                                         <FormErrorMessage>{form.errors.weight}</FormErrorMessage>
                                     </FormControl>
                                     )}
@@ -170,7 +171,7 @@ export default function NewPatient() {
                                     {({ field, form }: any) => (
                                     <FormControl isInvalid={form.errors.height}>
                                         <FormLabel htmlFor="height">Altura</FormLabel>
-                                        <Input {...field} id="height" placeholder="1.62" size="lg"/>
+                                        <Input {...field} id="height" placeholder="1.62" size="md"/>
                                         <FormErrorMessage>{form.errors.height}</FormErrorMessage>
                                     </FormControl>
                                     )}
@@ -182,7 +183,7 @@ export default function NewPatient() {
                                     colorScheme="telegram"
                                     isLoading={loading}
                                     type="submit"
-                                    size="lg"
+                                    size="md"
                                 >
                                     Próximo
                                 </Button>
