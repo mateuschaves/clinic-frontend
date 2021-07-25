@@ -1,5 +1,6 @@
-import {call, put, takeLatest, delay} from 'redux-saga/effects';
+import {call, put, takeLatest} from 'redux-saga/effects';
 import {AnyAction} from 'redux';
+import { push } from 'connected-react-router'
 
 import {AxiosResponse} from 'axios';
 
@@ -26,6 +27,7 @@ export function* signinSaga({payload}: signinSagaProps) {
         if (successCallback)
             successCallback();
         yield put(signinActions.signinSuccess(response));
+        yield put(push('/home'))
     } catch (error) {
         if (errorCallback)
             errorCallback();
