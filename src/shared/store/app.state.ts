@@ -1,5 +1,5 @@
 import {AxiosError, AxiosResponse} from 'axios';
-import {User} from '~/shared/types/entity';
+import {User, Patient} from '~/shared/types/entity';
 
 export interface InitialSigninStateProps {
     user: AxiosResponse<User> | undefined,
@@ -7,7 +7,14 @@ export interface InitialSigninStateProps {
     error: AxiosError | undefined,
 }
 
+export interface InitialNewPatientStateProps {
+    patient: AxiosResponse<Patient> | undefined;
+    loading: boolean,
+    error: AxiosError | undefined,
+}
+
 
 export interface RootState {
     signin: InitialSigninStateProps;
+    newPatient: InitialNewPatientStateProps;
 }

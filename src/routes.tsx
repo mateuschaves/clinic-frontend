@@ -9,7 +9,8 @@ import { ConnectedRouter } from 'connected-react-router'
 import { history } from "./store";
 
 import Signin from '~/pages/Signin';
-import Home from "~/pages/Home";
+import Home from '~/pages/Home';
+import NewPatient from '~/pages/NewPatient';
 
 export default function Routes() {
   return (
@@ -27,6 +28,10 @@ export default function Routes() {
           <Route 
             path="/home"
             component={Home}
+          />
+          <Route
+            path="/new-patient"
+            component={NewPatient}
           />
         </Switch>
     </ConnectedRouter>
