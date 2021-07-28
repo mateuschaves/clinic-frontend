@@ -19,7 +19,7 @@ interface EmptyAnimationProps {
   onPress?: onPressProps;
 }
 
-const EmptyAnimation = ({ message = 'Nenhum exame cadastrado !', onPress, showAddButton = false,  }: EmptyAnimationProps) => {
+const EmptyAnimation = ({ message = 'Nenhum paciente cadastrado !', onPress, showAddButton = false,  }: EmptyAnimationProps) => {
 
 
   function renderAddButton() {

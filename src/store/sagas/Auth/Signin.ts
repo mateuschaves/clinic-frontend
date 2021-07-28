@@ -27,7 +27,7 @@ export function* signinSaga({payload}: signinSagaProps) {
         if (successCallback)
             successCallback();
         yield put(signinActions.signinSuccess(response));
-        yield put(push('/home'))
+        yield put(push('/patients'))
     } catch (error) {
         if (errorCallback)
             errorCallback();

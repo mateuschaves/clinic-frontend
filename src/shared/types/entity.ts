@@ -11,3 +11,12 @@ export interface Patient {
     weight: number;
     height: number;
 }
+
+export interface PatientPaginated {
+    data: Patient[];
+    count: number;
+    currentPage: number;
+    nextPage: number;
+    prevPage: number;
+    lastPage: number;
+}

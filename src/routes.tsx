@@ -9,7 +9,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import { history } from "./store";
 
 import Signin from '~/pages/Signin';
-import Home from '~/pages/Home';
+import Patients from '~/pages/Patients';
 import NewPatient from '~/pages/NewPatient';
 
 export default function Routes() {
@@ -26,8 +26,8 @@ export default function Routes() {
             component={Signin}
           />
           <Route 
-            path="/home"
-            component={Home}
+            path="/patients"
+            component={Patients}
           />
           <Route
             path="/new-patient"
