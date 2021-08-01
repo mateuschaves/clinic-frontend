@@ -1,6 +1,7 @@
 import client from '../client';
 import { NewPatientDto } from '~/shared/dto/Patient/new-patient.dto';
 import { ListPatientDto } from '~/shared/dto/Patient/list-patient.dto';
+import { RemovePatientDto } from '~/shared/dto/Patient/remove-patient.dto';
 
 const newPatient = ({
     name,
@@ -39,7 +40,18 @@ const listPatient = ({
     });
 }
 
+
+const removePatient = ({
+    id
+}: RemovePatientDto) => {
+    return client({
+        url: `/patient/${id}`,
+        method: 'DELETE',
+    });
+}
+
 export default {
     newPatient,
     listPatient,
+    removePatient,
 }

@@ -19,9 +19,16 @@ export interface InitialListPatientStateProps {
     error: AxiosError | undefined;
 }
 
+export interface InitialRemovePatientStateProps {
+    response: undefined;
+    loading: boolean;
+    error: AxiosError | undefined;
+}
+
 
 export interface RootState {
     signin: InitialSigninStateProps;
     newPatient: InitialNewPatientStateProps;
     listPatient: InitialListPatientStateProps;
+    removePatient: InitialRemovePatientStateProps;
 }

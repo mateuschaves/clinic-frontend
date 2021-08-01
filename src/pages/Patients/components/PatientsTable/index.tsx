@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { PatientPaginated } from '~/shared/types/entity';
 import Alert from '~/components/Alert';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { removePatientActions } from '~/store/ducks/Patient/RemovePatient';
+
 import {
     Table,
     Thead,
@@ -20,6 +23,8 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { Date } from '~/utils';
 
 import { Row } from './styles';
+import { RootState } from '~/shared/store/app.state';
+import { InitialRemovePatientStateProps } from '../../../../shared/store/app.state';
 
 interface PatientTableProps {
     data: PatientPaginated | undefined;
@@ -32,38 +37,46 @@ export default function PatientsTable({ data }: PatientTableProps) {
     const [deleteLoading, setDeleteLoading] = useState(false);
 
     const toast = useToast();
+    const dispatch = useDispatch();
+
+
+    const { loading } = useSelector<RootState, InitialRemovePatientStateProps>(state => state.removePatient);
 
     function onCloseDeleteAlert() {
         setShowDeleteAlert(false);
     }
 
-    function onDeleteSuccess() {
+    function successCallback() {
         toast({
             title: 'Paciente deletado com sucesso !',
             description: '',
             duration: 5000,
             isClosable: true,
             status: 'success',
-        })
+        });
+        onCloseDeleteAlert();
     }
 
-    function onDeleteError() {
+    function errorCallback() {
         toast({
             title: 'Erro ao deletar paciente !',
             description: 'Tente novamente',
             duration: 5000,
             isClosable: true,
             status: 'error',
-        })
+        });
+        onCloseDeleteAlert();
     }
 
     function onDeleteAlert() {
         setDeleteLoading(true)
-        setTimeout(() => {
-            setDeleteLoading(false);
-            setShowDeleteAlert(false);
-            onDeleteError();
-        }, 2000);
+        dispatch(
+            removePatientActions.removePatient({
+                id: patientToDelete,
+                successCallback,
+                errorCallback,
+            })
+        );
     }
 
     function handleDeleteClick(id: number) {
@@ -105,7 +118,7 @@ export default function PatientsTable({ data }: PatientTableProps) {
                 isOpen={showDeleteAlert}
                 onClose={onCloseDeleteAlert}
                 onDelete={onDeleteAlert}
-                isLoading={deleteLoading}
+                isLoading={loading}
                 cancelButtonText="Cancelar"
                 confirmButtonText="Deletar"
                 title="Remover paciente"
