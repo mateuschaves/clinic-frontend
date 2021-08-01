@@ -9,3 +9,9 @@ export const Container = styled.div`
     height: 100vh;
     padding: 50px;
 `;
+
+export const Title = styled.h1`
+    color: ${colors.primary};
+    font-size: 21px;
+    margin-bottom: 30px;
+`;

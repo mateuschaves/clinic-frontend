@@ -2,9 +2,9 @@ import React, {
     ButtonHTMLAttributes
 } from 'react';
 
-import {Bounce} from "react-activity";
+import { Bounce } from "react-activity";
 
-import {Button} from './styles';
+import { Button } from './styles';
 
 interface FormButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     loading: boolean;

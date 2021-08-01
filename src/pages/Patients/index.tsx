@@ -8,7 +8,7 @@ import PatientsTable from './components/PatientsTable';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Container } from './styles';
+import { Container, Title } from './styles';
 import { RootState, InitialListPatientStateProps } from '../../shared/store/app.state';
 import { listPatientActions } from '~/store/ducks/Patient/ListPatient';
 
@@ -52,6 +52,7 @@ export default function Patients() {
     return (
         <Container>
             <Header />
+            {!isPatientsEmpty() && <Title>Seus pacientes</Title>}
             {isPatientsEmpty() ? renderPatientsTable() : renderPatientsTable()}
         </Container>
     )

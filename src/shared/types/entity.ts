@@ -3,6 +3,7 @@ export interface User {
 }
 
 export interface Patient {
+    id?: number;
     name: string;
     gender: string;
     birthdate: Date;
